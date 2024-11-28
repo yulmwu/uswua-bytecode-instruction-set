@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Instructions Set</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+            * {
+                font-family: 'Roboto Mono', monospace;
+                font-optical-sizing: auto;
+                font-size: 12px;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th,
+            td {
+                border: 1px solid black;
+                padding: 5px;
+                text-align: center;
+                background-color: #f2f2f2;
+            }
+            td.u {
+                background-color: #faf3d6;
+            }
+            td.extended {
+                background-color: #fff697;
+            }
+            th.row-header {
+                background-color: #a6d4df;
+            }
+            th.col-header {
+                background-color: #a7d99b;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <table>
+                <tr>
+                    <th></th>
+                    <th class="col-header">-0</th>
+                    <th class="col-header">-1</th>
+                    <th class="col-header">-2</th>
+                    <th class="col-header">-3</th>
+                    <th class="col-header">-4</th>
+                    <th class="col-header">-5</th>
+                    <th class="col-header">-6</th>
+                    <th class="col-header">-7</th>
+                    <th class="col-header">-8</th>
+                    <th class="col-header">-9</th>
+                    <th class="col-header">-A</th>
+                    <th class="col-header">-B</th>
+                    <th class="col-header">-C</th>
+                    <th class="col-header">-D</th>
+                    <th class="col-header">-E</th>
+                    <th class="col-header">-F</th>
+                </tr>
+                <tr>
+                    <th class="row-header">0-</th>
+                    <td class="u" hex="00" desc="Noop" notation="">NOOP</td>
+                    <td class="u" hex="01" desc="Push Stack" operand="Value" notation="stack <- operand">PUSH</td>
+                    <td class="u" hex="02" desc="Pop stack, store in heap" operand="Heap address" notation="heap[address] = stack:pop">STORE</td>
+                    <td class="u" hex="03" desc="Load from heap, push to stack" operand="Heap address" notation="stack <- heap[operand]">LOAD</td>
+                    <td
+                        class="extended"
+                        hex="04"
+                        desc="Swap two values ​​on the stack"
+                        notation="x = stack:pop, y = stack:pop, stack <- x, stack <- y"
+                        extended="1"
+                    >
+                        SWAP
+                    </td>
+                    <td><!-- 05 --></td>
+                    <td><!-- 06 --></td>
+                    <td><!-- 07 --></td>
+                    <td><!-- 08 --></td>
+                    <td><!-- 09 --></td>
+                    <td><!-- 0A --></td>
+                    <td><!-- 0B --></td>
+                    <td><!-- 0C --></td>
+                    <td><!-- 0D --></td>
+                    <td><!-- 0E --></td>
+                    <td><!-- 0F --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">1-</th>
+                    <td
+                        class="u"
+                        hex="10"
+                        desc="Pop and add two values in the stack and push the values to the stack"
+                        notation="stack <- stack:pop + stack:pop"
+                    >
+                        ADD
+                    </td>
+                    <td
+                        class="u"
+                        hex="11"
+                        desc="Pop and subtract two values in the stack and push the values to the stack"
+                        notation="stack <- stack:pop - stack:pop"
+                    >
+                        SUB
+                    </td>
+                    <td
+                        class="u"
+                        hex="12"
+                        desc="Pop and multiple two values in the stack and push the values to the stack"
+                        notation="stack <- stack:pop * stack:pop"
+                    >
+                        MUL
+                    </td>
+                    <td
+                        class="u"
+                        hex="13"
+                        desc="Pop and divide two values in the stack and push the values to the stack"
+                        notation="stack <- stack:pop / stack:pop"
+                    >
+                        DIV
+                    </td>
+                    <td
+                        class="u"
+                        hex="14"
+                        desc="Pop and modulus two values in the stack and push the values to the stack"
+                        notation="stack <- stack:pop % stack:pop"
+                    >
+                        MOD
+                    </td>
+                    <td><!-- 15 --></td>
+                    <td><!-- 16 --></td>
+                    <td><!-- 17 --></td>
+                    <td
+                        class="u"
+                        hex="18"
+                        desc="Pop and `and` logical operation two values in the stack and push the values to the stack"
+                        notation="stack <- stack:pop && stack:pop"
+                    >
+                        AND
+                    </td>
+                    <td
+                        class="u"
+                        hex="19"
+                        desc="Pop and `or` logical operation two values in the stack and push the values to the stack"
+                        notation="stack <- stack:pop || stack:pop"
+                    >
+                        OR
+                    </td>
+                    <td
+                        class="u"
+                        hex="1A"
+                        desc="Pop and `xor` logical operation two values in the stack and push the values to the stack"
+                        notation="stack <- stack:pop ^ stack:pop"
+                    >
+                        XOR
+                    </td>
+                    <td
+                        class="u"
+                        hex="1B"
+                        desc="Pop and `not` logical operation two values in the stack and push the values to the stack"
+                        notation="stack <- !stack:pop"
+                    >
+                        NOT
+                    </td>
+                    <td
+                        class="u"
+                        hex="1C"
+                        desc="Pop and left shift logical operation two values in the stack and push the values to the stack"
+                        notation="stack <- stack:pop << stack:pop"
+                    >
+                        LSF
+                    </td>
+                    <td
+                        class="u"
+                        hex="1D"
+                        desc="Pop and right shift logical operation two values in the stack and push the values to the stack"
+                        notation="stack <- stack:pop >> stack:pop"
+                    >
+                        RSF
+                    </td>
+                    <td><!-- 1E --></td>
+                    <td><!-- 1F --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">2-</th>
+                    <td
+                        class="u"
+                        hex="20"
+                        desc="Pop and compare values equally in the stack and if true, push 1 to the stack"
+                        notation="stack <- stack:pop == stack:pop"
+                    >
+                        EQ
+                    </td>
+                    <td
+                        class="u"
+                        hex="21"
+                        desc="Pop and compare if the first value is greater than the second, and if true, push 1 to the stack"
+                        notation="stack <- stack:pop > stack:pop"
+                    >
+                        GT
+                    </td>
+                    <td
+                        class="u"
+                        hex="22"
+                        desc="Pop and compare if the first value is less than the second, and if true, push 1 to the stack"
+                        notation="stack <- stack:pop < stack:pop"
+                    >
+                        LT
+                    </td>
+                    <td
+                        class="u"
+                        hex="23"
+                        desc="Pop and compare if the first value is greater than or equal to the second, and if true, push 1 to the stack"
+                        notation="stack <- stack:pop >= stack:pop"
+                    >
+                        GTE
+                    </td>
+                    <td
+                        class="u"
+                        hex="24"
+                        desc="Pop and compare if the first value is less than or equal to the second, and if true, push 1 to the stack"
+                        notation="stack <- stack:pop <= stack:pop"
+                    >
+                        LTE
+                    </td>
+                    <td><!-- 25 --></td>
+                    <td><!-- 26 --></td>
+                    <td><!-- 27 --></td>
+                    <td
+                        class="u"
+                        hex="28"
+                        desc="Specify the length of the procedure, skip this length and execute. this instruction is used later when it is executed through CALL"
+                        operand="Length of the procedure"
+                        notation="ptr = ptr + operand + 1(PROC)"
+                    >
+                        PROC
+                    </td>
+                    <td
+                        class="u"
+                        hex="29"
+                        desc="Backup the current pointer to the callstack and jump it to the pointer of the procedure (PROC)"
+                        operand="Pointer of the procedure instruction"
+                        notation="callstack <- ptr, ptr = operand + 1"
+                    >
+                        CALL
+                    </td>
+                    <td class="u" hex="2A" desc="Return to the pointer backed up to callstack" notation="ptr = callstack:pop">RET</td>
+                    <td><!-- 2B --></td>
+                    <td class="u" hex="2C" desc="Jump to the pointer" operand="Pointer" notation="ptr = operand">JMP</td>
+                    <td
+                        class="u"
+                        hex="2D"
+                        desc="Pop the stack, and if the value is 0 (false), jump to the pointer"
+                        operand="Pointer"
+                        notation="if (stack:pop == 0) ptr = operand"
+                    >
+                        JIF
+                    </td>
+                    <td><!-- 2E --></td>
+                    <td><!-- 2F --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">3-</th>
+                    <td><!-- 30 --></td>
+                    <td><!-- 31 --></td>
+                    <td><!-- 32 --></td>
+                    <td><!-- 33 --></td>
+                    <td><!-- 34 --></td>
+                    <td><!-- 35 --></td>
+                    <td><!-- 36 --></td>
+                    <td><!-- 37 --></td>
+                    <td><!-- 38 --></td>
+                    <td><!-- 39 --></td>
+                    <td><!-- 3A --></td>
+                    <td><!-- 3B --></td>
+                    <td><!-- 3C --></td>
+                    <td><!-- 3D --></td>
+                    <td><!-- 3E --></td>
+                    <td><!-- 3F --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">4-</th>
+                    <td><!-- 40 --></td>
+                    <td><!-- 41 --></td>
+                    <td><!-- 42 --></td>
+                    <td><!-- 43 --></td>
+                    <td><!-- 44 --></td>
+                    <td><!-- 45 --></td>
+                    <td><!-- 46 --></td>
+                    <td><!-- 47 --></td>
+                    <td><!-- 48 --></td>
+                    <td><!-- 49 --></td>
+                    <td><!-- 4A --></td>
+                    <td><!-- 4B --></td>
+                    <td><!-- 4C --></td>
+                    <td><!-- 4D --></td>
+                    <td><!-- 4E --></td>
+                    <td><!-- 4F --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">5-</th>
+                    <td><!-- 50 --></td>
+                    <td><!-- 51 --></td>
+                    <td><!-- 52 --></td>
+                    <td><!-- 53 --></td>
+                    <td><!-- 54 --></td>
+                    <td><!-- 55 --></td>
+                    <td><!-- 56 --></td>
+                    <td><!-- 57 --></td>
+                    <td><!-- 58 --></td>
+                    <td><!-- 59 --></td>
+                    <td><!-- 5A --></td>
+                    <td><!-- 5B --></td>
+                    <td><!-- 5C --></td>
+                    <td><!-- 5D --></td>
+                    <td><!-- 5E --></td>
+                    <td><!-- 5F --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">6-</th>
+                    <td><!-- 60 --></td>
+                    <td><!-- 61 --></td>
+                    <td><!-- 62 --></td>
+                    <td><!-- 63 --></td>
+                    <td><!-- 64 --></td>
+                    <td><!-- 65 --></td>
+                    <td><!-- 66 --></td>
+                    <td><!-- 67 --></td>
+                    <td><!-- 68 --></td>
+                    <td><!-- 69 --></td>
+                    <td><!-- 6A --></td>
+                    <td><!-- 6B --></td>
+                    <td><!-- 6C --></td>
+                    <td><!-- 6D --></td>
+                    <td><!-- 6E --></td>
+                    <td><!-- 6F --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">7-</th>
+                    <td><!-- 70 --></td>
+                    <td><!-- 71 --></td>
+                    <td><!-- 72 --></td>
+                    <td><!-- 73 --></td>
+                    <td><!-- 74 --></td>
+                    <td><!-- 75 --></td>
+                    <td><!-- 76 --></td>
+                    <td><!-- 77 --></td>
+                    <td><!-- 78 --></td>
+                    <td><!-- 79 --></td>
+                    <td><!-- 7A --></td>
+                    <td><!-- 7B --></td>
+                    <td><!-- 7C --></td>
+                    <td><!-- 7D --></td>
+                    <td><!-- 7E --></td>
+                    <td><!-- 7F --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">8-</th>
+                    <td><!-- 80 --></td>
+                    <td><!-- 81 --></td>
+                    <td><!-- 82 --></td>
+                    <td><!-- 83 --></td>
+                    <td><!-- 84 --></td>
+                    <td><!-- 85 --></td>
+                    <td><!-- 86 --></td>
+                    <td><!-- 87 --></td>
+                    <td><!-- 88 --></td>
+                    <td><!-- 89 --></td>
+                    <td><!-- 8A --></td>
+                    <td><!-- 8B --></td>
+                    <td><!-- 8C --></td>
+                    <td><!-- 8D --></td>
+                    <td><!-- 8E --></td>
+                    <td><!-- 8F --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">9-</th>
+                    <td><!-- 90 --></td>
+                    <td><!-- 91 --></td>
+                    <td><!-- 92 --></td>
+                    <td><!-- 93 --></td>
+                    <td><!-- 94 --></td>
+                    <td><!-- 95 --></td>
+                    <td><!-- 96 --></td>
+                    <td><!-- 97 --></td>
+                    <td><!-- 98 --></td>
+                    <td><!-- 99 --></td>
+                    <td><!-- 9A --></td>
+                    <td><!-- 9B --></td>
+                    <td><!-- 9C --></td>
+                    <td><!-- 9D --></td>
+                    <td><!-- 9E --></td>
+                    <td><!-- 9F --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">A-</th>
+                    <td><!-- A0 --></td>
+                    <td><!-- A1 --></td>
+                    <td><!-- A2 --></td>
+                    <td><!-- A3 --></td>
+                    <td><!-- A4 --></td>
+                    <td><!-- A5 --></td>
+                    <td><!-- A6 --></td>
+                    <td><!-- A7 --></td>
+                    <td><!-- A8 --></td>
+                    <td><!-- A9 --></td>
+                    <td><!-- AA --></td>
+                    <td><!-- AB --></td>
+                    <td><!-- AC --></td>
+                    <td><!-- AD --></td>
+                    <td><!-- AE --></td>
+                    <td><!-- AF --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">B-</th>
+                    <td><!-- B0 --></td>
+                    <td><!-- B1 --></td>
+                    <td><!-- B2 --></td>
+                    <td><!-- B3 --></td>
+                    <td><!-- B4 --></td>
+                    <td><!-- B5 --></td>
+                    <td><!-- B6 --></td>
+                    <td><!-- B7 --></td>
+                    <td><!-- B8 --></td>
+                    <td><!-- B9 --></td>
+                    <td><!-- BA --></td>
+                    <td><!-- BB --></td>
+                    <td><!-- BC --></td>
+                    <td><!-- BD --></td>
+                    <td><!-- BE --></td>
+                    <td><!-- BF --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">C-</th>
+                    <td><!-- C0 --></td>
+                    <td><!-- C1 --></td>
+                    <td><!-- C2 --></td>
+                    <td><!-- C3 --></td>
+                    <td><!-- C4 --></td>
+                    <td><!-- C5 --></td>
+                    <td><!-- C6 --></td>
+                    <td><!-- C7 --></td>
+                    <td><!-- C8 --></td>
+                    <td><!-- C9 --></td>
+                    <td><!-- CA --></td>
+                    <td><!-- CB --></td>
+                    <td><!-- CC --></td>
+                    <td><!-- CD --></td>
+                    <td><!-- CE --></td>
+                    <td><!-- CF --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">D-</th>
+                    <td><!-- D0 --></td>
+                    <td><!-- D1 --></td>
+                    <td><!-- D2 --></td>
+                    <td><!-- D3 --></td>
+                    <td><!-- D4 --></td>
+                    <td><!-- D5 --></td>
+                    <td><!-- D6 --></td>
+                    <td><!-- D7 --></td>
+                    <td><!-- D8 --></td>
+                    <td><!-- D9 --></td>
+                    <td><!-- DA --></td>
+                    <td><!-- DB --></td>
+                    <td><!-- DC --></td>
+                    <td><!-- DD --></td>
+                    <td><!-- DE --></td>
+                    <td><!-- DF --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">E-</th>
+                    <td><!-- E0 --></td>
+                    <td><!-- E1 --></td>
+                    <td><!-- E2 --></td>
+                    <td><!-- E3 --></td>
+                    <td><!-- E4 --></td>
+                    <td><!-- E5 --></td>
+                    <td><!-- E6 --></td>
+                    <td><!-- E7 --></td>
+                    <td><!-- E8 --></td>
+                    <td><!-- E9 --></td>
+                    <td><!-- EA --></td>
+                    <td><!-- EB --></td>
+                    <td><!-- EC --></td>
+                    <td><!-- ED --></td>
+                    <td><!-- EE --></td>
+                    <td><!-- EF --></td>
+                </tr>
+                <tr>
+                    <th class="row-header">F-</th>
+                    <td><!-- F0 --></td>
+                    <td><!-- F1 --></td>
+                    <td><!-- F2 --></td>
+                    <td><!-- F3 --></td>
+                    <td><!-- F4 --></td>
+                    <td><!-- F5 --></td>
+                    <td><!-- F6 --></td>
+                    <td><!-- F7 --></td>
+                    <td><!-- F8 --></td>
+                    <td><!-- F9 --></td>
+                    <td><!-- FA --></td>
+                    <td><!-- FB --></td>
+                    <td><!-- FC --></td>
+                    <td><!-- FD --></td>
+                    <td class="u" desc="Debugger"><!-- FE -->DBG</td>
+                    <td class="u" desc="Exit the program"><!-- FF -->EXIT</td>
+                </tr>
+            </table>
+
+            <h1 id="title"></h1>
+            <p id="description"></p>
+            <p id="operand"></p>
+            
+            <p style="display: inline;" id="notation_label"></p>
+            <p style="display: inline; background-color: black; color: rgb(196, 211, 255);" id="notation"></p>
+        </div>
+
+        <script>
+            const title = document.getElementById('title')
+            const description = document.getElementById('description')
+            const operand = document.getElementById('operand')
+
+            const notation_label = document.getElementById('notation_label')
+            const notation = document.getElementById('notation')
+
+            const cells = document.querySelectorAll('td')
+
+            cells.forEach((cell) => {
+                cell.addEventListener('mouseover', (e) => {
+                    const content = e.target.textContent
+                    if (content.length == 0) {
+                        title.textContent = 'Illegal instruction'
+                        description.textContent = ''
+                        operand.textContent = ''
+
+                        notation_label.textContent = ''
+                        notation.textContent = ''
+                    } else {
+                        const hex = e.target.getAttribute('hex')
+                        const desc = e.target.getAttribute('desc')
+                        const operand_attr = e.target.getAttribute('operand')
+                        const notation_attr = e.target.getAttribute('notation')
+                        const extended = e.target.getAttribute('extended')
+
+                        title.textContent = `${content} (0x${hex}) ${extended == '1' ? '[extended]' : ''}`
+                        operand.textContent = `Operand: ${operand_attr ?? 'No operand'}`
+
+                        notation_label.textContent = 'Notation: '
+                        notation.textContent = notation_attr
+                    }
+                })
+            })
+        </script>
+    </body>
+</html>
