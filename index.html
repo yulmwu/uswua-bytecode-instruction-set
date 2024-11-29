@@ -12,7 +12,13 @@
                 font-size: 12px;
             }
             h1 {
+                font-size: 25px;
+            }
+            h2 {
                 font-size: 20px;
+            }
+            h3 {
+                font-size: 15px;
             }
             table {
                 border-collapse: collapse;
@@ -25,11 +31,14 @@
                 text-align: center;
                 background-color: #f2f2f2;
             }
-            td.u {
+            .u {
                 background-color: #faf3d6;
             }
-            td.extended {
-                background-color: #fff697;
+            .extended {
+                background-color: #ffe789;
+            }
+            .i {
+                cursor: pointer;
             }
             th.row-header {
                 background-color: #a6d4df;
@@ -39,11 +48,18 @@
             }
             .mouseover {
                 text-decoration: underline;
-                cursor: pointer;
+            }
+            .clicked {
+                font-weight: bold;
+                text-decoration: underline;
             }
         </style>
     </head>
     <body>
+        <div>
+            <h1>Swua bytecode instruction set</h1>
+            <p></p>
+        </div>
         <div>
             <table>
                 <tr>
@@ -67,12 +83,12 @@
                 </tr>
                 <tr>
                     <th class="row-header">0-</th>
-                    <td class="u" hex="00" desc="Noop" notation="Noop">NOOP</td>
-                    <td class="u" hex="01" desc="Push Stack" operand="Value" notation="stack <- operand">PUSH</td>
-                    <td class="u" hex="02" desc="Pop stack, store in heap" operand="Heap address" notation="heap[address] = stack:pop">STORE</td>
-                    <td class="u" hex="03" desc="Load from heap, push to stack" operand="Heap address" notation="stack <- heap[operand]">LOAD</td>
+                    <td class="u i" hex="00" desc="Noop" notation="Noop">NOOP</td>
+                    <td class="u i" hex="01" desc="Push Stack" operand="Value" notation="stack <- operand">PUSH</td>
+                    <td class="u i" hex="02" desc="Pop stack, store in heap" operand="Heap address" notation="heap[address] = stack:pop">STORE</td>
+                    <td class="u i" hex="03" desc="Load from heap, push to stack" operand="Heap address" notation="stack <- heap[operand]">LOAD</td>
                     <td
-                        class="extended"
+                        class="extended i"
                         hex="04"
                         desc="Swap two values ​​on the stack"
                         notation="x = stack:pop, y = stack:pop, stack <- x, stack <- y"
@@ -95,7 +111,7 @@
                 <tr>
                     <th class="row-header">1-</th>
                     <td
-                        class="u"
+                        class="u i"
                         hex="10"
                         desc="Pop and add two values in the stack and push the values to the stack"
                         notation="stack <- stack:pop + stack:pop"
@@ -103,7 +119,7 @@
                         ADD
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="11"
                         desc="Pop and subtract two values in the stack and push the values to the stack"
                         notation="stack <- stack:pop - stack:pop"
@@ -111,7 +127,7 @@
                         SUB
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="12"
                         desc="Pop and multiple two values in the stack and push the values to the stack"
                         notation="stack <- stack:pop * stack:pop"
@@ -119,7 +135,7 @@
                         MUL
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="13"
                         desc="Pop and divide two values in the stack and push the values to the stack"
                         notation="stack <- stack:pop / stack:pop"
@@ -127,7 +143,7 @@
                         DIV
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="14"
                         desc="Pop and modulus two values in the stack and push the values to the stack"
                         notation="stack <- stack:pop % stack:pop"
@@ -138,7 +154,7 @@
                     <td><!-- 16 --></td>
                     <td><!-- 17 --></td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="18"
                         desc="Pop and `and` logical operation two values in the stack and push the values to the stack"
                         notation="stack <- stack:pop && stack:pop"
@@ -146,7 +162,7 @@
                         AND
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="19"
                         desc="Pop and `or` logical operation two values in the stack and push the values to the stack"
                         notation="stack <- stack:pop || stack:pop"
@@ -154,7 +170,7 @@
                         OR
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="1A"
                         desc="Pop and `xor` logical operation two values in the stack and push the values to the stack"
                         notation="stack <- stack:pop ^ stack:pop"
@@ -162,7 +178,7 @@
                         XOR
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="1B"
                         desc="Pop and `not` logical operation two values in the stack and push the values to the stack"
                         notation="stack <- !stack:pop"
@@ -170,7 +186,7 @@
                         NOT
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="1C"
                         desc="Pop and left shift logical operation two values in the stack and push the values to the stack"
                         notation="stack <- stack:pop << stack:pop"
@@ -178,7 +194,7 @@
                         LSF
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="1D"
                         desc="Pop and right shift logical operation two values in the stack and push the values to the stack"
                         notation="stack <- stack:pop >> stack:pop"
@@ -191,7 +207,7 @@
                 <tr>
                     <th class="row-header">2-</th>
                     <td
-                        class="u"
+                        class="u i"
                         hex="20"
                         desc="Pop and compare values equally in the stack and if true, push 1 to the stack"
                         notation="stack <- stack:pop == stack:pop"
@@ -199,7 +215,7 @@
                         EQ
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="21"
                         desc="Pop and compare if the first value is greater than the second, and if true, push 1 to the stack"
                         notation="stack <- stack:pop > stack:pop"
@@ -207,7 +223,7 @@
                         GT
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="22"
                         desc="Pop and compare if the first value is less than the second, and if true, push 1 to the stack"
                         notation="stack <- stack:pop < stack:pop"
@@ -215,7 +231,7 @@
                         LT
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="23"
                         desc="Pop and compare if the first value is greater than or equal to the second, and if true, push 1 to the stack"
                         notation="stack <- stack:pop >= stack:pop"
@@ -223,7 +239,7 @@
                         GTE
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="24"
                         desc="Pop and compare if the first value is less than or equal to the second, and if true, push 1 to the stack"
                         notation="stack <- stack:pop <= stack:pop"
@@ -234,7 +250,7 @@
                     <td><!-- 26 --></td>
                     <td><!-- 27 --></td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="28"
                         desc="Specify the length of the procedure, skip this length and execute. this instruction is used later when it is executed through CALL"
                         operand="Length of the procedure"
@@ -243,7 +259,7 @@
                         PROC
                     </td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="29"
                         desc="Backup the current pointer to the callstack and jump it to the pointer of the procedure (PROC)"
                         operand="Pointer of the procedure instruction"
@@ -251,11 +267,11 @@
                     >
                         CALL
                     </td>
-                    <td class="u" hex="2A" desc="Return to the pointer backed up to callstack" notation="ptr = callstack:pop">RET</td>
+                    <td class="u i" hex="2A" desc="Return to the pointer backed up to callstack" notation="ptr = callstack:pop">RET</td>
                     <td><!-- 2B --></td>
-                    <td class="u" hex="2C" desc="Jump to the pointer" operand="Pointer" notation="ptr = operand">JMP</td>
+                    <td class="u i" hex="2C" desc="Jump to the pointer" operand="Pointer" notation="ptr = operand">JMP</td>
                     <td
-                        class="u"
+                        class="u i"
                         hex="2D"
                         desc="Pop the stack, and if the value is 0 (false), jump to the pointer"
                         operand="Pointer"
@@ -510,14 +526,19 @@
                     <td><!-- FB --></td>
                     <td><!-- FC --></td>
                     <td><!-- FD --></td>
-                    <td class="u" hex="FE" desc="Debugger"><!-- FE -->DBG</td>
-                    <td class="u" hex="FF" desc="Exit the program"><!-- FF -->EXIT</td>
+                    <td class="u i" hex="FE" desc="Debugger"><!-- FE -->DBG</td>
+                    <td class="u i" hex="FF" desc="Exit the program"><!-- FF -->EXIT</td>
                 </tr>
             </table>
 
-            <h1 id="title"></h1>
+            <div style="padding-top: 10px; padding-right: 10px; text-align: right">
+                <p style="display: inline">*</p>
+                <p class="extended" style="display: inline">Extended</p>
+            </div>
 
-            <p id="desc"></p>
+            <h2 id="title"></h2>
+
+            <h3 id="desc"></h3>
 
             <div style="padding-bottom: 10px">
                 <p style="display: inline; background-color: black; color: white" id="operand_label"></p>
@@ -528,6 +549,10 @@
                 <p style="display: inline; background-color: black; color: white" id="notation_label"></p>
                 <p style="display: inline" id="notation"></p>
             </div>
+        </div>
+
+        <div>
+            <h1>Examples</h1>
         </div>
 
         <script>
@@ -543,24 +568,30 @@
 
             const cells = document.querySelectorAll('td')
 
+            let clicked_cell
+
             cells.forEach((cell) => {
                 cell.addEventListener('mouseover', (e) => {
                     const content = e.target.textContent
 
-                    if (content.length == 0) {
-                        title.textContent = 'Illegal instruction'
+                    if (content.length != 0) e.target.classList.add('mouseover')
+                })
 
-                        description_label.textContent = ''
-                        description.textContent = ''
+                cell.addEventListener('mouseout', (e) => {
+                    e.target.classList.remove('mouseover')
+                })
 
-                        operand_label.textContent = ''
-                        operand.textContent = ''
+                cell.addEventListener('click', (e) => {
+                    const content = e.target.textContent
 
-                        notation_label.textContent = ''
-                        notation.textContent = ''
-                    } else {
-                        e.target.classList.add('mouseover')
+                    try {
+                        clicked_cell.classList.remove('clicked')
+                    } catch (_) {}
 
+                    clicked_cell = e.target
+                    clicked_cell.classList.add('clicked')
+
+                    if (content.length != 0) {
                         const hex = e.target.getAttribute('hex')
                         const desc = e.target.getAttribute('desc')
                         const operand_attr = e.target.getAttribute('operand')
@@ -570,6 +601,7 @@
                         title.textContent = `0x${hex} : ${content} ${extended == '1' ? '[extended]' : ''}`
 
                         description_label = ''
+                        description.textContent = desc
 
                         operand_label.textContent = 'Operand :'
                         operand.textContent = operand_attr ?? 'No operand'
@@ -578,11 +610,9 @@
                         notation.textContent = notation_attr
                     }
                 })
-
-                cell.addEventListener('mouseout', (e) => {
-                    e.target.classList.remove('mouseover')
-                })
             })
+
+            cells[0].click()
         </script>
     </body>
 </html>
